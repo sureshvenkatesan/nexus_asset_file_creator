@@ -52,7 +52,8 @@ Now convert it to a json asset file as below
 
 ```
 using the [nexus_list_to_json_migrator.py](nexus_list_to_json_migrator/nexus_list_to_json_migrator.py) as mentioned in 
-[readme.md](Nexus_multi_repos_DeltaSync_from_date/readme.md)
+[readme.md](nexus_list_to_json_migrator/readme.md)
+
 ---
 
 Or you can run a query like the following for multiple package types based on the `last_updated` date :
