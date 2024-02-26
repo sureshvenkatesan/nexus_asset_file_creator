@@ -51,8 +51,8 @@ Now convert it to a json asset file as below
 }
 
 ```
-using the [nexus_list_to_json_migrator.py](nexus_list_to_json_migrator/nexus_list_to_json_migrator.py)
-
+using the [nexus_list_to_json_migrator.py](nexus_list_to_json_migrator/nexus_list_to_json_migrator.py) as mentioned in 
+[readme.md](Nexus_multi_repos_DeltaSync_from_date/readme.md)
 ---
 
 Or you can run a query like the following for multiple package types based on the `last_updated` date :
@@ -82,8 +82,11 @@ FROM   repository r
 WHERE  recipe_name LIKE '%hosted'
        AND a.last_updated > '"+str(sql_date)+"' 
 ```
+Then you can use the  [Nexus_multi_repos_DeltaSync_from_date.py](Nexus_multi_repos_DeltaSync_from_date/Nexus_multi_repos_DeltaSync_from_date.py) script as mentioned in [readme.md](Nexus_multi_repos_DeltaSync_from_date/readme.md)
 
-You could also potentialy make a few optimizations such as using INNER JOIN instead of LEFT OUTER JOIN `if applicable`
+---
+
+You could also potentially make a few optimizations such as using INNER JOIN instead of LEFT OUTER JOIN `if applicable`
 and ensure that necessary indexes are present on columns used in join conditions (config_repository_id, repository_id, component_id).
 ```
 SELECT r.NAME AS Repo_Name,
