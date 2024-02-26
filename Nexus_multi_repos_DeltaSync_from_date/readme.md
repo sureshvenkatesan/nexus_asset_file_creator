@@ -44,6 +44,11 @@ Note: The   `output_path` is usually the same folder where the  `migrator_script
 - Make sure to provide correct database credentials and Nexus configurations.
 - Verify the SQL query logic for fetching relevant data based on your Nexus repository structure.
 
+This runs the  "Nexus Migrator" tool mentioned in "Migrating from Sonatype Nexus Repository Manager to Artifactory > [Migrator Tool Overview](https://jfrog.com/help/r/jfrog-installation-setup-documentation/migrator-tool-overview)" with the the [migrateArtifact](https://jfrog.com/help/r/jfrog-installation-setup-documentation/run-the-migration-tool-in-multiple-stages) / `ma` option for the generated asset files as seen in the `run_migration` menthod in the script i.e :
+
+```
+./jfrog-nexus-migrator-<version>.sh ma --use-existing-asset-file="true" 
+```
 
 ### Disclaimer
 Your use of this code is governed by the following license:
