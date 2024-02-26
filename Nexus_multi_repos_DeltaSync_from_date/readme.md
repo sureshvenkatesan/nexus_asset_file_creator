@@ -46,8 +46,9 @@ Note: The   `output_path` is usually the same folder where the  `migrator_script
 
 
 ### Disclaimer
-Your use of this code is governed by the following license:JFrog hereby grants you a non-
-exclusive, non-transferable, non-distributable right to use this code solely in connection with
+Your use of this code is governed by the following license:
+
+JFrog hereby grants you a non-exclusive, non-transferable, non-distributable right to use this code solely in connection with
 your use of a JFrog product or service. This code is provided 'as-is' and without any warranties or
 conditions, either express or implied including, without limitation, any warranties or conditions
 of title, non-infringement, merchantability or fitness for a particular cause. Nothing herein shall
