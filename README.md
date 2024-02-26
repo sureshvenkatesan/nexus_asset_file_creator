@@ -54,6 +54,12 @@ Now convert it to a json asset file as below
 using the [nexus_list_to_json_migrator.py](nexus_list_to_json_migrator/nexus_list_to_json_migrator.py) as mentioned in 
 [readme.md](nexus_list_to_json_migrator/readme.md)
 
+Now use the in "Nexus Migrator" tool mentioned in "Migrating from Sonatype Nexus Repository Manager to Artifactory > [Migrator Tool Overview](https://jfrog.com/help/r/jfrog-installation-setup-documentation/migrator-tool-overview)" with the the [migrateArtifact](https://jfrog.com/help/r/jfrog-installation-setup-documentation/run-the-migration-tool-in-multiple-stages) / `ma` option like:
+
+```
+./jfrog-nexus-migrator-<version>.sh ma --use-existing-asset-file="true" 
+```
+
 ---
 
 Or you can run a query like the following for multiple package types based on the `last_updated` date :

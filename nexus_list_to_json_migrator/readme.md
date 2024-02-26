@@ -36,6 +36,12 @@ repo2,/path/to/asset2
 ## Output
 The script generates JSON files named `<repository_name>_assetmap.json` for each repository found in the input CSV file. These files contain information about the assets associated with each repository.
 
+Now use the in "Nexus Migrator" tool mentioned in "Migrating from Sonatype Nexus Repository Manager to Artifactory > [Migrator Tool Overview](https://jfrog.com/help/r/jfrog-installation-setup-documentation/migrator-tool-overview)" with the the [migrateArtifact](https://jfrog.com/help/r/jfrog-installation-setup-documentation/run-the-migration-tool-in-multiple-stages) / `ma` option like:
+
+```
+./jfrog-nexus-migrator-<version>.sh ma --use-existing-asset-file="true" 
+```
+
 ### Disclaimer
 Your use of this code is governed by the following license:
 
