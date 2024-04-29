@@ -1,4 +1,11 @@
 # Nexus migrator asset file creator 
+The "Nexus Migrator" tool mentioned in "Migrating from Sonatype Nexus Repository Manager to Artifactory > [Migrator Tool Overview](https://jfrog.com/help/r/jfrog-installation-setup-documentation/migrator-tool-overview)" has a  [migrateArtifact](https://jfrog.com/help/r/jfrog-installation-setup-documentation/run-the-migration-tool-in-multiple-stages) / ma option like:
+```
+./jfrog-nexus-migrator-<version>.sh ma --use-existing-asset-file="true" 
+```
+
+This `migrateArtifact` option expects a json file with a list of assets to migrate . Some customers generate this json file themselves , based on the `last_updated` date column in `raw_asset` table  , in the nexus database and pass it to the migrator tool .  Some use this approach only for the daily deltas ( after first initial full sync is completed) .
+
 
 You can run the Postgres query like the following for a maven repository
 to determine the files you are interested to migrate:
@@ -54,7 +61,7 @@ Now convert it to a json asset file as below
 using the [nexus_list_to_json_migrator.py](nexus_list_to_json_migrator/nexus_list_to_json_migrator.py) as mentioned in 
 [readme.md](nexus_list_to_json_migrator/readme.md)
 
-Now use the in "Nexus Migrator" tool mentioned in "Migrating from Sonatype Nexus Repository Manager to Artifactory > [Migrator Tool Overview](https://jfrog.com/help/r/jfrog-installation-setup-documentation/migrator-tool-overview)" with the the [migrateArtifact](https://jfrog.com/help/r/jfrog-installation-setup-documentation/run-the-migration-tool-in-multiple-stages) / `ma` option like:
+Now use the in "Nexus Migrator" tool  with the  [migrateArtifact](https://jfrog.com/help/r/jfrog-installation-setup-documentation/run-the-migration-tool-in-multiple-stages) / `ma` option like:
 
 ```
 ./jfrog-nexus-migrator-<version>.sh ma --use-existing-asset-file="true" 
