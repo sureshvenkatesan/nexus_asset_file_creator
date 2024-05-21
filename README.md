@@ -4,9 +4,13 @@ The "Nexus Migrator" tool mentioned in "Migrating from Sonatype Nexus Repository
 ./jfrog-nexus-migrator-<version>.sh ma --use-existing-asset-file="true" 
 ```
 
-This `migrateArtifact` option expects a json file with a list of assets to migrate . Some customers generate this json file themselves , based on the `last_updated` date column in `raw_asset` table  , in the nexus database and pass it to the migrator tool .  Some use this approach only for the daily deltas ( after first initial full sync is completed) .
+This `migrateArtifact` option expects a json file with a list of assets to migrate . 
 
+Some customers generate this json file themselves , based on the `last_updated` date column in `raw_asset` table  , in the nexus database and pass it to the migrator tool .  
 
+Some use this approach only for the daily deltas ( after first initial full sync is completed) .
+
+## Creating the asset json file:
 You can run the Postgres query like the following for a maven repository
 to determine the files you are interested to migrate:
 
@@ -37,10 +41,31 @@ JOIN maven2_content_repository mcr ON ma.repository_id = mcr.repository_id
 JOIN repository r ON mcr.config_repository_id = r.id
 WHERE r.NAME = '<repo-name>';
 ```
+
 This query retrieves the repository name (r.NAME) along with the asset path (ma.path) from the maven2_asset table. It joins the maven2_content_repository table to link the asset to its repository using the repository_id, and then joins the repository table to get the name of the repository using the config_repository_id. Finally, it filters the results based on the repository name specified (r.NAME = '<repo-name>').
 
 
-Now convert it to a json asset file as below 
+Using the [nexus_list_to_json_migrator.py](nexus_list_to_json_migrator/nexus_list_to_json_migrator.py) as mentioned in 
+[readme.md](nexus_list_to_json_migrator/readme.md) convert it to a json asset file as below 
+```
+
+ {
+	"assets": [
+		{
+			"source": "SOURCE_REPO_NAME_IN_NEXUS/testgp/testad/v12/testad-v12.jar",
+			"fileblobRef": ""
+		},
+		{
+			"source": "SOURCE_REPO_NAME_IN_NEXUS/testgp/testad/v12/testad-v12.jar.sha256",
+			"fileblobRef": ""
+		},
+        ..
+        ...
+    ]
+}
+
+```
+For example if the source repo name in Nexus is `maven-releases` then the asset file contents will be:
 ```
 {
 	"assets": [
@@ -58,14 +83,17 @@ Now convert it to a json asset file as below
 }
 
 ```
-using the [nexus_list_to_json_migrator.py](nexus_list_to_json_migrator/nexus_list_to_json_migrator.py) as mentioned in 
-[readme.md](nexus_list_to_json_migrator/readme.md)
 
-Now use the in "Nexus Migrator" tool  with the  [migrateArtifact](https://jfrog.com/help/r/jfrog-installation-setup-documentation/run-the-migration-tool-in-multiple-stages) / `ma` option like:
+
+Now use the in "Nexus Migrator" tool mentioned in "Migrating from Sonatype Nexus Repository Manager to Artifactory > [Migrator Tool Overview](https://jfrog.com/help/r/jfrog-installation-setup-documentation/migrator-tool-overview)" with the the [migrateArtifact](https://jfrog.com/help/r/jfrog-installation-setup-documentation/run-the-migration-tool-in-multiple-stages) / `ma` option like:
 
 ```
 ./jfrog-nexus-migrator-<version>.sh ma --use-existing-asset-file="true" 
 ```
+
+**Note:** If the source repo in Nexus is named `maven-releases` and the target repo in Artifactory is `maven-releases-local` the name of the asset file shoule be `<targetrepo-name>_assetmap.json` .
+
+For example: `maven-releases-local_assetmap.json`
 
 ---
 
