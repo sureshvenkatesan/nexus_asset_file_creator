@@ -11,7 +11,9 @@ Some customers generate this json file themselves , based on the `last_updated` 
 Some use this approach only for the daily deltas ( after first initial full sync is completed) .
 
 ## Creating the asset json file:
-You can run the Postgres query like the following for a maven repository
+### Postgres query for maven repository:
+
+You can run the Postgres query like the following for a `maven` repository
 to determine the files you are interested to migrate:
 
 ```
@@ -84,8 +86,73 @@ For example if the source repo name in Nexus is `maven-releases` then the asset 
 
 ```
 
+---
+### Postgres query for docker repository : 
+```
+SELECT path,
+       attributes
+FROM   docker_asset
+WHERE  repository_id = (SELECT repository_id
+                        FROM   docker_content_repository
+                        WHERE  config_repository_id =
+                               (SELECT id
+                                FROM   repository
+                                WHERE  NAME = '<repo-name>'));
+```                                
+Similary to the maven csv output , you can use the [docker_repo_csv_to_json_asset_file.py](docker_repo_csv_to_json_asset_file.py)
+to covert the csv file to a sokcer asset json file  with format mentioned in next section.
 
-Now use the in "Nexus Migrator" tool mentioned in "Migrating from Sonatype Nexus Repository Manager to Artifactory > [Migrator Tool Overview](https://jfrog.com/help/r/jfrog-installation-setup-documentation/migrator-tool-overview)" with the the [migrateArtifact](https://jfrog.com/help/r/jfrog-installation-setup-documentation/run-the-migration-tool-in-multiple-stages) / `ma` option like:
+### Sample docker asset file content : 
+```
+{
+	"assets": {
+		"blob": [
+			{
+				"source": "my-docker/v2/-/blobs/sha256:45c01c5d1f9c4b605692859d75b72c995131a6ec33257c8f1559aea43f896d8e",
+				"fileblobRef": ""
+			},
+			{
+				"source": "my-docker/v2/-/blobs/sha256:fbad7aa519f7da86dde82ab83e3130d8024e9ffebc315cead1fecb230e208340",
+				"fileblobRef": ""
+			},
+			{
+				"source": "my-docker/v2/-/blobs/sha256:daefd2028bfea420cf03362aef7e6758e57e979d75dc277cf6e176f0a72f51de",
+				"fileblobRef": ""
+			},
+			{
+				"source": "my-docker/v2/-/blobs/sha256:e2d17ec744c16f1ee6d8b676fec571faee36b16261d367670492aef4f72cfef9",
+				"fileblobRef": ""
+			}
+		],
+		"manifestV1": [
+			{
+				"source": "my-docker/v2/my-image/manifests/v1",
+				"fileblobRef": "",
+				"digest": "sha256:1f66ca0cd801f8c2b1b744f58376f08cfda584f491f7b03cd9f2d45d10f0738c"
+			}
+		],
+		"manifestV2": [
+			{
+				"source": "my-docker/v2/my-image/manifests/sha256:1f66ca0cd801f8c2b1b744f58376f08cfda584f491f7b03cd9f2d45d10f0738c",
+				"fileblobRef": "",
+				"digest": "sha256:1f66ca0cd801f8c2b1b744f58376f08cfda584f491f7b03cd9f2d45d10f0738c"
+			}
+		]
+	}
+}
+```
+
+### Special Notes :- 
+
+Docker repository consist of mainly 3 types of artifacts in nexus repository.
+
+Docker layers (which will be stored under <repo-name>/v2/-/blobs/ )  →  assets.blob
+Docker manifest file under version tag (which will be stored under <repo-name>/v2/<image-name>/manifests/<tag>)  → assets.manifestV1
+Docker manifest file with digest value (which will be stored under <repo-name>/v2/<image-name>/manifests/) → assets.manifestV2
+
+---
+
+Once you have the asset json file , use the in "Nexus Migrator" tool mentioned in "Migrating from Sonatype Nexus Repository Manager to Artifactory > [Migrator Tool Overview](https://jfrog.com/help/r/jfrog-installation-setup-documentation/migrator-tool-overview)" with the the [migrateArtifact](https://jfrog.com/help/r/jfrog-installation-setup-documentation/run-the-migration-tool-in-multiple-stages) / `ma` option like:
 
 ```
 ./jfrog-nexus-migrator-<version>.sh ma --use-existing-asset-file="true" 
@@ -97,7 +164,7 @@ For example: `maven-releases-local_assetmap.json`
 
 ---
 
-Or you can run a query like the following for multiple package types based on the `last_updated` date :
+You can run a query like the following for multiple package types based on the `last_updated` date :
 
 ```
 SELECT r.NAME AS Repo_Name,
@@ -155,3 +222,4 @@ FROM   repository r
 WHERE  recipe_name LIKE '%hosted'
        AND a.last_updated > '" + str(sql_date) + "';
 ```
+---
