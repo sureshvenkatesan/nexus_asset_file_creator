@@ -6,7 +6,7 @@ If Docker cannot be installed  on the Nexus 3.x server  then use the script from
 
 ## Prerequisites
 
-Since Docker is not used, you need to download and install the JFrog CLI manually. You can do this by running the following command:
+Since Docker is not used, you need to download and install the JFrog CLI manually. You can do this by running the following command from [Get JFrog CLI](https://jfrog.com/getcli/):
 
 ```sh
 curl -fL https://install-cli.jfrog.io | sh
@@ -31,28 +31,7 @@ curl -fkL https://getcli.jfrog.io/v2-jf | sh
    Follow the instructions provided in the 
    [Migrating specific repositories from Nexus3 to Artifactory.pdf](Migrating%20specific%20repositories%20from%20Nexus3%20to%20Artifactory.pdf)  document.
 
-## Additional Resources
-
-- [Nexus Migrator Script Releases](https://releases.jfrog.io/artifactory/run/nexus-migrator)
-- [Get JFrog CLI](https://jfrog.com/getcli/)
-
-## Example Commands
-
-To download and install JFrog CLI:
-
-```sh
-curl -fL https://install-cli.jfrog.io | sh
-```
-
-If direct installation is not possible:
-
-```sh
-curl -fkL https://getcli.jfrog.io/v2-jf | sh
-```
 
 ## Notes
 
 - Ensure you have the necessary permissions to execute scripts and install tools on your server.
-- Backup your data before performing the migration to prevent any data loss.
-
-For detailed steps and further instructions, refer to the linked resources and the provided PDF documents.
