@@ -13,6 +13,7 @@ This repository contains a Python script [csv_to_json_convertor.py](csv_to_json_
 ## Prerequisites
 
 - Python 3.x
+- `pip install pytz`
 
 ## Installation
 

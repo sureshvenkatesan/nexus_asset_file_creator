@@ -2,6 +2,7 @@ import csv
 import json
 import argparse
 from datetime import datetime
+import pytz
 
 def convert_csv_to_json(csv_file, json_file):
     assets = []
@@ -13,10 +14,15 @@ def convert_csv_to_json(csv_file, json_file):
             # Construct the 'source' path
             source_path = f"{row['Repository']}/{row['Group']}/{row['Artifact']}/{row['Version']}/{row['file']}"
 
-            # Convert the uploadDate to Unix timestamp
+            # Convert the uploadDate to Unix timestamp in UTC
             upload_date = row['uploadDate']
-            upload_timestamp = int(datetime.strptime(upload_date, "%a, %d %b %Y %H:%M:%S %Z").timestamp())
-            
+            # Parse the uploadDate with timezone awareness
+            upload_datetime = datetime.strptime(upload_date, "%a, %d %b %Y %H:%M:%S %Z")
+            # Ensure the datetime is in UTC using pytz.UTC
+            upload_datetime_utc = pytz.UTC.localize(upload_datetime)
+            # Get the Unix timestamp
+            upload_timestamp = int(upload_datetime_utc.timestamp())
+           
             # Create the asset dictionary
             asset = {
                 "source": source_path,
