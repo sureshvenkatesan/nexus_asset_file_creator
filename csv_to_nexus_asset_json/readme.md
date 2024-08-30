@@ -3,6 +3,8 @@
 
 This repository contains a Python script [csv_to_json_convertor.py](csv_to_json_convertor.py) that converts a CSV file into a JSON file, following a specific format. The script reads the CSV file, processes each row, and generates a JSON file with the required structure.
 
+[csv_to_json_convertor_use_slash_for_dots.py](csv_to_json_convertor_use_slash_for_dots.py) is a slight variation of the script with '/' replacing '.' in the Group field. This script is preferred over  [csv_to_json_convertor.py](csv_to_json_convertor.py) 
+
 ## Features
 
 - Converts a CSV file to a JSON file.
@@ -35,6 +37,8 @@ This repository contains a Python script [csv_to_json_convertor.py](csv_to_json_
 
    ```bash
    python csv_to_json_convertor.py input.csv output.json
+   or
+   python csv_to_nexus_asset_json/csv_to_json_convertor_use_slash_for_dots.py input.csv output.json
    ```
 
 ### Example
@@ -49,21 +53,29 @@ python csv_to_json_convertor.py gav_assets_in_repo.csv output_assets.json
 
 Will generate the   [output_assets.json](output_assets.json) file.
 
+Running the following command:
+
+```bash
+python csv_to_json_convertor_use_slash_for_dots.py gav_assets_in_repo.csv output_assets_use_slash_for_dots.json
+```
+
+Will generate the   [output_assets_use_slash_for_dots.json](output_assets_use_slash_for_dots.json) file.
+
 ```json
 {
     "assets": [
         {
-            "source": "fnv2_private_release_repository/com.example.sync.sync4_0.05e3e6f21084f2fbcefc96defe47221533c88f1e/MU5T-14H213-OAC/06917-Sync4-launch-SYNC-v1.9.0-Dev-Sign-Plusone-ALM-Leftover-107-05e3e6f210/MU5T-14H213-OAC-06917-Sync4-launch-SYNC-v1.9.0-Dev-Sign-Plusone-ALM-Leftover-107-05e3e6f210.vbf",
+            "source": "fnv2_private_release_repository/com/ford/sync/sync4_0/05e3e6f21084f2fbcefc96defe47221533c88f1e/MU5T-14H213-OAC/06917-Sync4-launch-SYNC-v1.9.0-Dev-Sign-Plusone-ALM-Leftover-107-05e3e6f210/MU5T-14H213-OAC-06917-Sync4-launch-SYNC-v1.9.0-Dev-Sign-Plusone-ALM-Leftover-107-05e3e6f210.vbf",
             "fileblobRef": "",
             "lastDownloaded": "null",
-            "lastUpdated": "1699930763"
+            "lastUpdated": "1699959563"
         },
         {
-            "source": "fnv2_private_release_repository/com.example.sync.sync4_0.05e3e6f21084f2fbcefc96defe47221533c88f1e/MU5T-14H213-OAC/06920-Sync4-launch-SYNC-v1.9.0-Prod-Sign-Plusone-ALM-Leftover-107-05e3e6f210/MU5T-14H213-OAC-06920-Sync4-launch-SYNC-v1.9.0-Prod-Sign-Plusone-ALM-Leftover-107-05e3e6f210.vbf",
+            "source": "fnv2_private_release_repository/com/ford/sync/sync4_0/05e3e6f21084f2fbcefc96defe47221533c88f1e/MU5T-14H213-OAC/06920-Sync4-launch-SYNC-v1.9.0-Prod-Sign-Plusone-ALM-Leftover-107-05e3e6f210/MU5T-14H213-OAC-06920-Sync4-launch-SYNC-v1.9.0-Prod-Sign-Plusone-ALM-Leftover-107-05e3e6f210.vbf",
             "fileblobRef": "",
             "lastDownloaded": "null",
-            "lastUpdated": "1699935189"
-        }     
+            "lastUpdated": "1699963989"
+        }
     ]
 }
 ```

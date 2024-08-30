@@ -100,7 +100,7 @@ WHERE  repository_id = (SELECT repository_id
                                 WHERE  NAME = '<repo-name>'));
 ```                                
 Similary to the maven csv output , you can use the [docker_repo_csv_to_json_asset_file.py](docker_repo_csv_to_json_asset_file.py)
-to covert the csv file to a sokcer asset json file  with format mentioned in next section.
+to covert the csv file to a docker asset json file  with format mentioned in next section.
 
 ### Sample docker asset file content : 
 ```
