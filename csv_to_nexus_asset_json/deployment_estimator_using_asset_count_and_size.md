@@ -59,9 +59,10 @@ python deployment_estimator_using_asset_count_and_size.py --csv_file artifacts.c
 
 Sample Output:
 ```
-Pending artifacts: 72809
-Total size of pending artifacts: 109.32 TB
-Deployment speed: 0.05 artifacts/second or 77.48 GB /second
-Based on this speed, the deployment is estimated to be completed in approximately 17 days, 21 hours, 21 minutes, and 31 seconds.
-The actual estimated completion date is: Oct 07, 2024, 02:20:30 PM PDT
+Pending artifacts: 65005
+Total size of pending artifacts: 95.80 TB
+Deployment speed: 0.04 artifacts/second or 78.76 MB /second
+Deployment speed: 2.60 artifacts/minute or 4.62 GB /minute
+Based on this speed, the deployment is estimated to be completed in approximately 17 days, 8 hours, 35 minutes, and 46 seconds.
+The actual estimated completion date is: Oct 07, 2024, 01:46:32 AM PDT
 ```

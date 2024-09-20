@@ -17,6 +17,7 @@ def convert_size(bytes_size):
         bytes_size /= 1024
 
 # Function to calculate deployment speed and estimate completion time
+# Function to calculate deployment speed and estimate completion time
 def calculate_deployment_speed(df, initial_artifact_line, final_artifact_line, total_artifacts_line, start_time, end_time, use_end_time_for_completion):
     # Get the initial, final, and total artifact data based on line numbers
     initial_artifacts = df.iloc[:initial_artifact_line]
@@ -48,17 +49,22 @@ def calculate_deployment_speed(df, initial_artifact_line, final_artifact_line, t
     # Calculate speed (artifacts and bytes per second)
     migrated_artifacts = final_artifact_line - initial_artifact_line
     migrated_size = final_size - initial_size
-    speed_per_artifact = migrated_artifacts / time_elapsed if migrated_artifacts > 0 else 0
-    speed_per_size = migrated_size / time_elapsed if migrated_size > 0 else 0
+    speed_per_artifact_sec = migrated_artifacts / time_elapsed if migrated_artifacts > 0 else 0
+    speed_per_size_sec = migrated_size / time_elapsed if migrated_size > 0 else 0
+
+    # Calculate speed per minute
+    speed_per_artifact_min = speed_per_artifact_sec * 60
+    speed_per_size_min = speed_per_size_sec * 60
 
     print(f"Pending artifacts: {pending_artifacts}")
     print(f"Total size of pending artifacts: {convert_size(pending_size)}")
-    print(f"Deployment speed: {speed_per_artifact:.2f} artifacts/second or {convert_size(speed_per_size * 1024)} /second")
+    print(f"Deployment speed: {speed_per_artifact_sec:.2f} artifacts/second or {convert_size(speed_per_size_sec)} /second")
+    print(f"Deployment speed: {speed_per_artifact_min:.2f} artifacts/minute or {convert_size(speed_per_size_min)} /minute")
 
     # Estimate remaining deployment time (seconds)
-    if speed_per_artifact > 0 or speed_per_size > 0:
-        remaining_time_artifacts = pending_artifacts / speed_per_artifact if speed_per_artifact > 0 else float('inf')
-        remaining_time_size = pending_size / speed_per_size if speed_per_size > 0 else float('inf')
+    if speed_per_artifact_sec > 0 or speed_per_size_sec > 0:
+        remaining_time_artifacts = pending_artifacts / speed_per_artifact_sec if speed_per_artifact_sec > 0 else float('inf')
+        remaining_time_size = pending_size / speed_per_size_sec if speed_per_size_sec > 0 else float('inf')
 
         # Take the max of both times for the estimate
         estimated_completion_time = max(remaining_time_artifacts, remaining_time_size)
@@ -81,6 +87,7 @@ def calculate_deployment_speed(df, initial_artifact_line, final_artifact_line, t
         print(f"The actual estimated completion date is: {estimated_completion_date_local.strftime('%b %d, %Y, %I:%M:%S %p %Z')}")
     else:
         print("No artifacts pending deployment or migration speed is too slow to estimate.")
+
 
 def main():
     parser = argparse.ArgumentParser(description="Calculate deployment speed based on artifacts and size.")
