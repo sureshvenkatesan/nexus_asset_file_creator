@@ -46,7 +46,7 @@ WHERE r.NAME = '<repo-name>';
 
 This query retrieves the repository name (r.NAME) along with the asset path (ma.path) from the maven2_asset table. It joins the maven2_content_repository table to link the asset to its repository using the repository_id, and then joins the repository table to get the name of the repository using the config_repository_id. Finally, it filters the results based on the repository name specified (r.NAME = '<repo-name>').
 
-
+### Sample non-docker asset file content for ver < 0.9.7: 
 Using the [nexus_list_to_json_migrator.py](nexus_list_to_json_migrator/nexus_list_to_json_migrator.py) as mentioned in 
 [readme.md](nexus_list_to_json_migrator/readme.md) convert it to a json asset file as below that can be used with 
 the [Nexus migrator v 0.9.2](https://releases.jfrog.io/artifactory/run/nexus-migrator/0.9.2/jfrog-nexus-migrator-0.9.2.sh) .
@@ -86,7 +86,8 @@ For example if the source repo name in Nexus is `maven-releases` then the asset 
 }
 
 ```
-But with [Nexus migrator v 0.9.7](https://releases.jfrog.io/artifactory/run/nexus-migrator/0.9.7/jfrog-nexus-migrator-0.9.7.sh) it has
+### Sample non-docker asset file content for ver >= 0.9.7: 
+With [Nexus migrator v 0.9.7](https://releases.jfrog.io/artifactory/run/nexus-migrator/0.9.7/jfrog-nexus-migrator-0.9.7.sh) it has
 new improvements like the following, and  now the asset file  should have atleast sha1 or sha256  as requirted attributes:  
 - Support for checksum validation of migrated Artifacts [INST-9100]. 
 - Use Native checksum deploy API instead of head request check for `--check-binary-exists` [INST-9128]
