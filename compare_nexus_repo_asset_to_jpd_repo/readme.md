@@ -1,6 +1,6 @@
 # Nexus Repository Asset Comparison Tool
 
-This Python script compares repository assets between a Nexus asset map and an Artifactory repo list json file to identify mismatches in SHA1 hashes and file paths.
+[compare_nexus_repo_asset_to_jpd_repo.py](compare_nexus_repo_asset_to_jpd_repo.py) Python script compares repository assets between a Nexus asset map and an Artifactory repo list json file to identify mismatches in SHA1 hashes and file paths.
 
 ## Prerequisites
 
@@ -8,6 +8,8 @@ This Python script compares repository assets between a Nexus asset map and an A
 - JSON input files:
   - Artifactory repo artifact list JSON file (e.g., `corp_releases_east.json`) referred to as the `--east-json` file
   - Asset map JSON file (e.g., `corp_releases_assetmap.json`) from Nexus
+
+Note: Sample input json files are in [input](input) and output files are in the [output](output).
 
 ## Usage
 ```bash
