@@ -1,0 +1,20 @@
+{
+  "assets": [
+    {
+      "source": "corp_releases/com/example/parent/3.0/parent-3.0.pom",
+      "createdDate": "1551116660373",
+      "lastUpdated": "1730389369050",
+      "lastDownloaded": "1730389369050",
+      "nexusAssetSha1": "2b0aabfe52a8e1ed3b7ad1919102b397360cdefa",
+      "fileblobRef": "corp-s3@ECCD5192-0C832296-599116CF-97A001CF-285413DE:0dcfebbd-afe8-496c-ac1e-e83f572e45d4"
+    },
+    {
+      "source": "corp_releases/com/example/hadoop-common/cmn-lib/cmn-lib/2.0/cmn-lib-2.0-tests1.jar",
+      "createdDate": "1551190770601",
+      "lastUpdated": "1730057015989",
+      "lastDownloaded": "1728257807058",
+      "nexusAssetSha1": "db02c28716495c9875cbcb517490fc5661bd0fbe",
+      "fileblobRef": "corp-s3@ECCD5192-0C832296-599116CF-97A001CF-285413DE:abdc1125-43ed-416f-90e3-7fb437da0bf6"
+    }
+  ]
+}

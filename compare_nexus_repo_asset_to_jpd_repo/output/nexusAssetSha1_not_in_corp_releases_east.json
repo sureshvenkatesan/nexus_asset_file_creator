@@ -1,0 +1,12 @@
+{
+  "assets": [
+    {
+      "source": "corp_releases/com/example/parent/3.0/parent-3.0.pom",
+      "createdDate": "1551116660373",
+      "lastUpdated": "1730389369050",
+      "lastDownloaded": "1730389369050",
+      "nexusAssetSha1": "2b0aabfe52a8e1ed3b7ad1919102b397360cdefa",
+      "fileblobRef": "corp-s3@ECCD5192-0C832296-599116CF-97A001CF-285413DE:0dcfebbd-afe8-496c-ac1e-e83f572e45d4"
+    }
+  ]
+}

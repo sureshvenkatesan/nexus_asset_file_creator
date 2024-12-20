@@ -1,0 +1,20 @@
+{
+    "uri" : "https://artifactory.example.com:443/artifactory/api/storage/corp_releases",
+    "created" : "2024-12-20T05:47:55.088Z",
+    "files" : [ {
+      "uri" : "/AutomationCommon/AutomationCommon/1.0.-M09262018-01/AutomationCommon-1.0.-M09262018-01-leanfttest.jar",
+      "size" : 6155,
+      "lastModified" : "2024-10-07T02:57:51.293Z",
+      "folder" : false,
+      "sha1" : "ef19e97d1c5b317a22b134b61f9bc53d38982f3b",
+      "sha2" : "f6218919c7c5ebd6fff614b3eb9e130b12e76e1918b84815b11631c21ca0341a"
+    }, {
+      "uri" : "/AutomationCommon/AutomationCommon/1.0.-M09262018-01/AutomationCommon-1.0.-M09262018-01.jar",
+      "size" : 51834,
+      "lastModified" : "2024-10-07T04:42:31.670Z",
+      "folder" : false,
+      "sha1" : "c70587e45bed2e9bf4349ff666e66e4706655892",
+      "sha2" : "8e70495d7eed591ef44b214287b4c2af2c9c7d78741abc43f71f1321c49e682f"
+    }
+    ]
+  }
